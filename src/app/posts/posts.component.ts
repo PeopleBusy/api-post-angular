@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {PostsService} from '../services/posts.service';
+import {Router} from '@angular/router';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-posts',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  posts;
+
+  constructor(private postsService : PostsService, private router :Router) { }
 
   ngOnInit() {
+
+    this.postsService.getPosts()
+      .subscribe((response : any) => {
+          this.posts = response.result;
+        },
+        (error : HttpErrorResponse) => {
+          console.log(error);
+          this.router.navigateByUrl("/login");
+        });
+
   }
 
 }

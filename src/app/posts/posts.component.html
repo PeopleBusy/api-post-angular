@@ -1,3 +1,26 @@
-<p>
-  posts works!
-</p>
+<app-navbar></app-navbar>
+<ol class="breadcrumb">
+  <li><a href="#" routerLink="/tasks">Home</a></li>
+  <li class="active">Posts</li>
+</ol>
+<p></p>
+
+<div class="col-md-12 table-responsive">
+  <table class="table table-condensed table-hover table-striped">
+    <tr>
+      <th>ID</th>
+      <th>Post Title</th>
+      <th>Post Description</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let p of posts">
+      <td>{{ p.id }}</td>
+      <td>{{ p.title }}</td>
+      <td>{{ p.description }}</td>
+      <td>
+        <a class="btn btn-primary btn-xs">Update</a>
+        <a class="btn btn-danger btn-xs">Delete</a>
+      </td>
+    </tr>
+  </table>
+</div>
